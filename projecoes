@@ -1,0 +1,13 @@
+Características para preencher na ficha:
+  -> nome
+  -> classe:
+      -> Tacapeiro - tacape          (3 * força + 1d20)
+      -> Arqueiro  - arco longo      (força + inteligencia + 2d6)
+      -> Mateiro   - faca de osso    (agilidade + 4d4)
+      -> Pajé      - maracás rituais (dano: 
+  -> atributos:
+      -> força
+      -> inteligencia
+      -> agilidade
+      -> resistência
+      -> espírito
