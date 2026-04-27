@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "structs.h"
+#include "../funcoes-universais.cpp"
 using namespace std;
 
 void resumoFichas() {
@@ -13,6 +14,7 @@ void opcoesFichas() {
     cout << "2. Remover uma ficha" << endl;
     cout << "3. Visualizar fichas criadas" << endl;
     cout << "4. Começar jornada!" << endl;
+    espaco();
 }
 
 Ficha* criarFicha() {
@@ -37,6 +39,7 @@ void escolherNome(Ficha* ficha) {
     cin >> nome;
     ficha->nome = nome;
     cout << "Nome <" << nome << "> salvo para o personagem!";
+    espaco();
 }
 
 void escolherClasse(Ficha* ficha) {
@@ -51,52 +54,107 @@ void escolherClasse(Ficha* ficha) {
     } while (classe > 4 || classe < 1);
     ficha->classe = static_cast<Classes>(classe);
     ficha->arma = static_cast<Armas>(classe);
+    espaco();
 }
 
-void mudarPontosDoAtributo(int atributo, int restantes, string nome_atributo) {
+int mudarPontosDoAtributo(int atributo, int restantes, string nome_atributo) {
     int num_input;
     cout << "Em quantos pontos deseja aumentar ou diminuir(-) " << nome_atributo << "?" << endl;
     cin >> num_input;
     if (num_input <= restantes && (num_input + atributo) > 0) {
-        atributo = num_input;
-        restantes -= num_input;
+        espaco();
+        return num_input;
     }
+    espaco();
+    return 0;
 }
 
-void distribuirPontos(Ficha* ficha, int restantes) {
+void distribuirPontos(Ficha* ficha) {
     int atr_input;
+    int a_somar;
 
     while (true) {
-        cout << "Você tem " << restantes << "/7 pontos restantes para distribuir entre os atributos" << endl;
+        cout << "Você tem " << ficha->restantes << "/7 pontos restantes para distribuir entre os atributos" << endl;
         cout << "[Alerta] Cada atributo precisa ter pelo menos 1 ponto!" << endl;
         cout << "Escolha onde você quer alocar os pontos: " << endl;
-        cout << "1. Força        [" << string(ficha->forca, '#') << string(8 - ficha->forca, '-') << "]" << endl;
-        cout << "2. Inteligência [" << string(ficha->inteligencia, '#') << string(8 - ficha->inteligencia, '-') << "]" << endl;
-        cout << "3. Agilidade    [" << string(ficha->agilidade, '#') << string(8 - ficha->agilidade, '-') << "]" << endl;
-        cout << "4. Resistência  [" << string(ficha->resistencia, '#') << string(8 - ficha->resistencia, '-') << "]" << endl;
-        cout << "5. Espírito     [" << string(ficha->espirito, '#') << string(8 - ficha->espirito, '-') << "]" << endl;
+        imprimirPorcentagem("1. Força        ", ficha->forca, 8);
+        imprimirPorcentagem("2. Inteligência ", ficha->inteligencia, 8);
+        imprimirPorcentagem("3. Agilidade    ", ficha->agilidade, 8);
+        imprimirPorcentagem("4. Resistência  ", ficha->resistencia, 8);
+        imprimirPorcentagem("5. Espírito     ", ficha->espirito, 8);
         cout << "0. Sair" << endl;
         cin >> atr_input;
+        espaco();
         switch (atr_input) {
             case 1:
-                mudarPontosDoAtributo(ficha->forca, restantes, "sua força");
+                a_somar = mudarPontosDoAtributo(ficha->forca, ficha->restantes, "sua força");
+                ficha->forca += a_somar;
+                ficha->restantes -= a_somar;
                 break;
             case 2:
-                mudarPontosDoAtributo(ficha->inteligencia, restantes, "sua inteligência");
+                a_somar = mudarPontosDoAtributo(ficha->inteligencia, ficha->restantes, "sua inteligência");
+                ficha->inteligencia += a_somar;
+                ficha->restantes -= a_somar;
                 break;
             case 3:
-                mudarPontosDoAtributo(ficha->agilidade, restantes, "sua agilidade");
+                a_somar = mudarPontosDoAtributo(ficha->agilidade, ficha->restantes, "sua agilidade");
+                ficha->agilidade += a_somar;
+                ficha->restantes -= a_somar;
                 break;
             case 4:
-                mudarPontosDoAtributo(ficha->resistencia, restantes, "sua resistência");
+                a_somar = mudarPontosDoAtributo(ficha->resistencia, ficha->restantes, "sua resistência");
+                ficha->resistencia += a_somar;
+                ficha->restantes -= a_somar;
                 break;
             case 5:
-                mudarPontosDoAtributo(ficha->espirito, restantes, "seu espírito");
+                a_somar = mudarPontosDoAtributo(ficha->espirito, ficha->restantes, "seu espírito");
+                ficha->espirito += a_somar;
+                ficha->restantes -= a_somar;
                 break;
             case 0:
+                ficha->vida_max = 15 + 4 * ficha->resistencia + 2 * ficha->forca;
+                ficha->vida_atual = ficha->vida_max;
                 return;
             default:
                 break;
         }
     }
+}
+
+void exibirFicha(Ficha* ficha) {
+    imprimirTitulo(ficha->nome);
+    string classe;
+    string arma;
+    imprimirPorcentagem("-> Vida", ficha->vida_atual, ficha->vida_max);
+    switch (ficha->classe) {
+        case nenhuma_classe:
+            classe = "Nenhuma classe definida ainda";
+            arma = "Nenhuma arma definida ainda";
+            break;
+        case tacapeiro:
+            classe = "Tacapeiro";
+            arma = "Tacape (3 * força + 1d20)";
+            break;
+        case arqueiro:
+            classe = "Arqueiro";
+            arma = "Arco (força + inteligencia + 2d6)";
+            break;
+        case mateiro:
+            classe = "Mateiro";
+            arma = "Facas de ossos (agilidade + 4d4)";
+            break;
+        case paje:
+            classe = "Pajé";
+            arma = "maracás (dano: inteligencia + 2d4 | cura: inteligencia + espírito + 1d8)";
+            break;
+    }
+    cout << "-> Classe:     " << classe << endl;
+    cout << "-> Arma:       " << arma << endl;
+    cout << "=============== Atributos ===============" << endl;
+    imprimirPorcentagem("-> Força       ", ficha->forca, 8);
+    imprimirPorcentagem("-> Inteligência", ficha->inteligencia, 8);
+    imprimirPorcentagem("-> Agilidade   ", ficha->agilidade, 8);
+    imprimirPorcentagem("-> Resistência ", ficha->resistencia, 8);
+    imprimirPorcentagem("-> Espírito    ", ficha->espirito, 8);
+    espaco();
 }
