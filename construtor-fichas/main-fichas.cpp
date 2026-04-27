@@ -37,3 +37,7 @@ vector<Ficha*> retornarFichas() {
     
     return party;
 }
+
+void deletarFichas(vector<Ficha*> party) {
+    for (Ficha* f : party) delete f;
+}
