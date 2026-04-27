@@ -4,10 +4,11 @@ Características para preencher na ficha:
       -> Tacapeiro - tacape          (3 * força + 1d20)
       -> Arqueiro  - arco longo      (força + inteligencia + 2d6)
       -> Mateiro   - faca de osso    (agilidade + 4d4)
-      -> Pajé      - maracás rituais (dano: 
-  -> atributos:
+      -> Pajé      - maracás rituais (dano: inteligencia + 2d4 | cura: inteligencia + espírito + 1d8)
+  -> atributos (12 pontos para serem distribuídos, mas cada atributo precisa ter 1 no mínimo):
       -> força
       -> inteligencia
       -> agilidade
       -> resistência
       -> espírito
+  -> vida (15 + 4 * resistência + 2 * força)
