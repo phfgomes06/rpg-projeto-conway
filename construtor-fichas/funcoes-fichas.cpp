@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "structs.h"
+#include <vector>
 #include "../funcoes-universais.cpp"
 using namespace std;
 
@@ -15,6 +16,34 @@ void opcoesFichas() {
     cout << "3. Visualizar fichas criadas" << endl;
     cout << "4. Começar jornada!" << endl;
     espaco();
+}
+
+void deletarFicha(vector<Ficha*>& party) {
+    int input;
+    
+    if (party.empty()) {
+        cout << "Não há nenhuma ficha criada!" << endl;
+        espaco();
+        return;
+    } 
+    
+    while (true) {
+        cout << "Qual ficha deseja deletar?" << endl;
+        for (int i = 0; i < party.size(); ++i) {
+            cout << i + 1 << ". " << party[i]->nome << endl;
+        }
+        cin >> input;
+        espaco();
+        if (input > 0 && input <= party.size()) {
+            delete party[input - 1];
+            party.erase(party.begin() + (input - 1));
+            cout << "Ficha deletada!" << endl;
+            espaco();
+            return;
+        } else {
+            cout << "Opção inválida!" << endl;
+        }
+    }
 }
 
 Ficha* criarFicha() {

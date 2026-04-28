@@ -19,6 +19,7 @@ vector<Ficha*> retornarFichas() {
                 distribuirPontos(atual);
                 break;
             case 2:
+                deletarFicha(party);
                 break;
             case 3:
                 cout << party.size() << " fichas encontradas" << endl;
