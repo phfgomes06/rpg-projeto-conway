@@ -20,18 +20,20 @@ void opcoesFichas() {
 
 void deletarFicha(vector<Ficha*>& party) {
     int input;
-    
+
     if (party.empty()) {
         cout << "Não há nenhuma ficha criada!" << endl;
         espaco();
         return;
-    } 
-    
+    }
+
     while (true) {
         cout << "Qual ficha deseja deletar?" << endl;
         for (int i = 0; i < party.size(); ++i) {
             cout << i + 1 << ". " << party[i]->nome << endl;
         }
+        cout << "0. sair" << endl;
+
         cin >> input;
         espaco();
         if (input > 0 && input <= party.size()) {
@@ -39,6 +41,8 @@ void deletarFicha(vector<Ficha*>& party) {
             party.erase(party.begin() + (input - 1));
             cout << "Ficha deletada!" << endl;
             espaco();
+            return;
+        } else if (input == 0) {
             return;
         } else {
             cout << "Opção inválida!" << endl;
@@ -180,6 +184,7 @@ void exibirFicha(Ficha* ficha) {
     cout << "-> Classe:     " << classe << endl;
     cout << "-> Arma:       " << arma << endl;
     cout << "=============== Atributos ===============" << endl;
+    cout << "-> (" << ficha->restantes << "/7) pontos restantes" << endl;
     imprimirPorcentagem("-> Força       ", ficha->forca, 8);
     imprimirPorcentagem("-> Inteligência", ficha->inteligencia, 8);
     imprimirPorcentagem("-> Agilidade   ", ficha->agilidade, 8);
