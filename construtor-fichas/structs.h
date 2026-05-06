@@ -1,3 +1,5 @@
+#pragma once
+
 #include <string>
 using namespace std;
 
@@ -15,7 +17,7 @@ enum Armas {
     arco,
     facas,
     maraca
-}; 
+};
 
 
 struct Ficha {

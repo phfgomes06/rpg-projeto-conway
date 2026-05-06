@@ -1,4 +1,4 @@
-#include "funcoes-fichas.cpp"
+#include "funcoes-fichas.h"
 #include <vector>
 
 vector<Ficha*> retornarFichas() {

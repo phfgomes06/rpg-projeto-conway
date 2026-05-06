@@ -2,7 +2,7 @@
 #include <string>
 #include "structs.h"
 #include <vector>
-#include "../funcoes-universais.cpp"
+#include "../funcoes-universais.h"
 using namespace std;
 
 void resumoFichas() {
@@ -192,3 +192,4 @@ void exibirFicha(Ficha* ficha) {
     imprimirPorcentagem("-> Espírito    ", ficha->espirito, 8);
     espaco();
 }
+

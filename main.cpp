@@ -1,4 +1,5 @@
-#include "construtor-fichas/main-fichas.cpp"
+#include "construtor-fichas/main-fichas.h"
+#include "enredo-principal/main-enredo.h"
 using namespace std;
 
 int main() {
