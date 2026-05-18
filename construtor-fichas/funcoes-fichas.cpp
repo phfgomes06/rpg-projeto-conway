@@ -80,7 +80,7 @@ void escolherClasse(Ficha* ficha) {
     int classe;
     do {
         cout << "Escolha qual classe você quer atribuir: " << endl;
-        cout << "1. Tacapeiro (dano muito alto em curto alcance) - arma: Tacape (dano: 3 * força + 1d20) a cada 2 rodadas" << endl;
+        cout << "1. Tacapeiro (dano muito alto em curto alcance) - arma: Tacape (dano: 3 * força + 1d10) " << endl;
         cout << "2. Arqueiro (dano preciso a longo alcance) - arma: Arco Longo (dano: força + inteligencia + 2d6)" << endl;
         cout << "3. Mateiro (muitas facadas de emboscada) - arma: Faca de Ossos (dano: agilidade + 4d4)" << endl;
         cout << "4. Pajé (feitiços de cura e dano) - arma: Maracá (dano: inteligencia + 2d4 | cura: inteligencia + espirito + 1d10)" << endl;

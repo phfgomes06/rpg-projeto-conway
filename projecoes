@@ -1,7 +1,7 @@
 Características para preencher na ficha:
   -> nome
   -> classe:
-      -> Tacapeiro - tacape          (3 * força + 1d20)
+      -> Tacapeiro - tacape          (3 * força + 1d10)
       -> Arqueiro  - arco longo      (força + inteligencia + 2d6)
       -> Mateiro   - faca de osso    (agilidade + 4d4)
       -> Pajé      - maracás rituais (dano: inteligencia + 2d4 | cura: inteligencia + espírito + 1d8)
@@ -12,3 +12,17 @@ Características para preencher na ficha:
       -> resistência
       -> espírito
   -> vida (15 + 4 * resistência + 2 * força)
+
+struct Ficha {
+    string nome;
+    Classes classe;
+    Armas arma;
+    int vida_max;
+    int vida_atual;
+    int forca;
+    int inteligencia;
+    int agilidade;
+    int resistencia;
+    int espirito;
+    int restantes; //pontos restantes para gastar
+};

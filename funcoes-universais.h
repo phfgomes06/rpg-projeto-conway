@@ -4,6 +4,7 @@
 #include <random>
 #include <thread>
 #include <chrono>
+#include "construtor-fichas/structs.h"
 using namespace std::chrono_literals;
 using namespace std;
 
@@ -13,3 +14,4 @@ void imprimirTitulo(string titulo, int espacamento_lateral = 4, char decoracao =
 int rolarDado(int lados);
 int exibirOpcoes(string pergunta, vector<string> opcoes);
 void confirmPrint(string conteudo);
+bool checarSorte(Ficha* personagem);

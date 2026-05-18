@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <random>
+#include "construtor-fichas/structs.h"
 using namespace std;
 
 void espaco(int tamanho = 2) {
@@ -47,4 +48,12 @@ int exibirOpcoes(string pergunta, vector<string> opcoes) {
 void confirmPrint(string conteudo) {
     cout << conteudo << endl;
     cin.get();
+}
+
+bool checarSorte(Ficha* personagem) {
+    int odd = rolarDado(10);
+    if (odd <= personagem->espirito) {
+        return true;
+    }
+    return false;
 }
