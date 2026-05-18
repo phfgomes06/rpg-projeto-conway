@@ -1,9 +1,6 @@
 #include <iostream>
 #include <string>
 #include <random>
-#include <thread>
-#include <chrono>
-using namespace std::chrono_literals;
 using namespace std;
 
 void espaco(int tamanho = 2) {
@@ -31,25 +28,23 @@ int rolarDado(int lados) {
     return distrib(gen);
 }                            // não fazia ideia de como fazer o RNG no C++ então isso foi tirado do google mesmo KKKKKKKKKKKK
 
-int exibirOpcoes(vector<string> opcoes) {
+int exibirOpcoes(string pergunta, vector<string> opcoes) {
     int input;
     int i;
-    for (i = 1; i <= opcoes.size(); ++i) {
-        cout << i  << ". " << opcoes[i] << endl;
-    }
-    cin >> input;
-    if (input >= 1 && input <= opcoes.size()) {
-        return input;
-    } else {
-        return 0;
-    }
+
+    do {
+        input = 0;
+        cout << pergunta << endl;
+        for (i = 1; i <= opcoes.size(); ++i) {
+            cout << i  << ". " << opcoes[i - 1] << endl;
+        }
+        cin >> input;
+    } while (input < 1 || input > opcoes.size());
+    
+    return input;
 }
 
-void slowPrint(string conteudo, chrono::milliseconds intervalo = 200ms) {
-    for (char c : conteudo) {
-        cout << c;
-        this_thread::sleep_for(intervalo);
-    }
+void confirmPrint(string conteudo) {
+    cout << conteudo << endl;
     cin.get();
-    cout << endl;
 }

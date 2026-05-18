@@ -3,6 +3,7 @@
 using namespace std;
 
 int main() {
-    vector<Ficha*> fichas = retornarFichas();
-    deletarFichas(fichas);
+    // vector<Ficha*> fichas = retornarFichas();
+    comecarJogo();
+    // deletarFichas(fichas);
 }

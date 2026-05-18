@@ -1,0 +1,1 @@
+#include "funcoes-universais.h"

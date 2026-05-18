@@ -1,4 +1,5 @@
 #include "funcoes-fichas.h"
+#include "main-fichas.h"
 #include <vector>
 
 vector<Ficha*> retornarFichas() {

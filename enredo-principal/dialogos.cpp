@@ -1,12 +1,13 @@
 #include "../funcoes-universais.h"
+#include "dialogos.h"
 
 namespace lore {
     void inicio() {
-        slowPrint("É madrugada.");
-        slowPrint("Todos da aldeia estão dormindo.");
-        slowPrint("Vocês tiveram um mau pressentimento quando foram dormir.");
-        slowPrint("O medo de não estarem sozinhos atormenta vocês profundamente.");
-        slowPrint("E então, de repente...");
-        slowPrint("Vocês ouvem os arbustos farfalhando, cortando o silêncio da madrugada.");
+        confirmPrint("É madrugada.");
+        confirmPrint("Todos da aldeia estão dormindo.");
+        confirmPrint("Vocês tiveram um mau pressentimento quando foram dormir.");
+        confirmPrint("O medo de não estarem sozinhos atormenta vocês profundamente.");
+        confirmPrint("E então, de repente...");
+        confirmPrint("Vocês ouvem os arbustos farfalhando, cortando o silêncio da madrugada.");
     }
 }
