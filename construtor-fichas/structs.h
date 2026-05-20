@@ -16,7 +16,8 @@ enum Armas {
     tacape,
     arco,
     facas,
-    maraca
+    maraca,
+    garra
 };
 
 
