@@ -1,9 +1,8 @@
 #include "construtor-fichas/structs.h"
-#include <vector>
 using namespace std;
 
 namespace inimigo {
-    void onca(vector<Ficha*> inimigos) {
+    Ficha* onca() {
         Ficha* f = new Ficha();
         f->nome = "Onça";
         f->classe = nenhuma_classe;
@@ -16,6 +15,6 @@ namespace inimigo {
         f->resistencia = 2;
         f->espirito = 1;
         f->restantes = 0;
-        inimigos.push_back(f);
+        return f;
     }
 }

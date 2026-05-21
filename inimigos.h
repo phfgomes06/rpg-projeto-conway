@@ -4,5 +4,5 @@
 using namespace std;
 
 namespace inimigo {
-    void onca(vector<Ficha*> inimigos);
+    Ficha* onca();
 }

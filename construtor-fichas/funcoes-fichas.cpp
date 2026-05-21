@@ -194,3 +194,21 @@ void exibirFicha(Ficha* ficha) {
     espaco();
 }
 
+string nomeDaArma(Ficha* p) {
+    switch (p->arma) {
+        case nenhuma_arma:
+            return "sem arma";
+        case tacape:
+            return "tacape";
+        case arco:
+            return "arco";
+        case facas:
+            return "facas de osso";
+        case maraca:
+            return "maracás";
+        case garra:
+            return "garra";
+    }
+}
+
+

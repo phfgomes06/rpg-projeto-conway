@@ -15,4 +15,5 @@ void escolherClasse(Ficha* ficha);
 int mudarPontosDoAtributo(int atributo, int restantes, string nome_atributo);
 void distribuirPontos(Ficha* ficha);
 void exibirFicha(Ficha* ficha);
+string nomeDaArma(Ficha* p);
 

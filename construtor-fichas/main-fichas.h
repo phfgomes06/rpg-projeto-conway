@@ -4,3 +4,4 @@
 
 vector<Ficha*> retornarFichas();
 void deletarFichas(vector<Ficha*> party);
+vector<Ficha*> criarPartyTeste();

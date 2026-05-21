@@ -1,9 +1,8 @@
 TARGET = rpg
 
-SRCS = main.cpp \
+SRCS = *.cpp \
        construtor-fichas/*.cpp \
        enredo-principal/*.cpp \
-       funcoes-universais.cpp
 
 all:
 	g++ $(SRCS) -o $(TARGET)
