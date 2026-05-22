@@ -28,7 +28,7 @@ namespace luta {
                 dano = atacante->inteligencia + 2 * rolarDado(4);
                 break;
             case garra:
-                dano = atacante->forca + rolarDado(4);
+                dano = atacante->forca + rolarDado(8);
                 break;
         }
         dano -= atacado->resistencia * checarSorte(atacado);
@@ -78,19 +78,55 @@ namespace luta {
         return (input - 1);
     }
 
+    bool pajeVaiCurar() {
+        int input;
+        input = exibirOpcoes("Deseja curar ou atacar?", {"Curar", "Atacar"});
+        if (input == 1) return true;
+        else return false;
+    }
+
+    int pajeEscolherAliado(Ficha* paje, vector<Ficha*> party) {
+        vector<string> nomes = {};
+        int input;
+
+        for(Ficha* f : party) {
+            nomes.push_back(f->nome);
+        }
+        cout << "Qual aliado " << paje->nome << " curará?";
+        input = exibirOpcoes("", nomes);
+
+        return (input - 1);
+    }
+
+    void pajeCurarAliado(Ficha* paje, Ficha* alvo) {
+        int cura;
+        cura = paje->inteligencia + paje->espirito + rolarDado(8);
+        alvo->vida_atual += cura;
+        if (alvo->vida_atual > alvo->vida_max) {
+            alvo->vida_atual = alvo->vida_max;
+        }
+        espaco(1);
+        cout << alvo->nome << " curou " << cura << " pontos de vida!" << endl;
+        espaco(1);
+        cin.get();
+    }
+
     void iniciar(vector<Ficha*> party, vector<Ficha*> inimigos) {
         int ordem_party = 0;
         int ordem_inimigos = 0;
         bool vez_da_party = true;
+        bool paje_vai_curar = false;
         int input;
         int index_inimigo_escolhido;
         int index_aliado_escolhido;
+        int index_cura_escolhido;
         Ficha* aliado_escolhido;
         Ficha* inimigo_escolhido;
         Ficha* char_atual = party[ordem_party];
         Ficha* inimigo_atual = inimigos[ordem_inimigos];
         imprimirTitulo("Luta iniciada!!");
 
+        // loop até algum dos grupos acabar
         while(!party.empty() && !inimigos.empty()) {
             if(vez_da_party) { // turno party
                 status(party, inimigos, ordem_party, ordem_inimigos, vez_da_party);
@@ -101,14 +137,22 @@ namespace luta {
                 cout << ">>> " << char_atual->nome << " - " << nomeDaArma(char_atual);
                 imprimirPorcentagem("", char_atual->vida_atual, char_atual->vida_max);
                 cin.get();
+                if (char_atual->classe == paje) {
+                    paje_vai_curar = pajeVaiCurar();
+                }
                 espaco(1);
-                index_inimigo_escolhido = escolherInimigoIndex(char_atual, inimigos);
-                inimigo_escolhido = inimigos[index_inimigo_escolhido];
-                atacar(char_atual, inimigo_escolhido);
-                if (morreu(inimigo_escolhido)) {
-                    cout << inimigo_escolhido->nome << " morreu!" << endl;
-                    inimigos.erase(inimigos.begin() + index_inimigo_escolhido);
-                    delete inimigo_escolhido;
+                if (paje_vai_curar) { // caso o pajé escolha curar
+                    index_cura_escolhido = pajeEscolherAliado(char_atual, party);
+                    pajeCurarAliado(char_atual, party[index_cura_escolhido]);
+                } else { // caso o pajé escolha causar dano ou outro personagem
+                    index_inimigo_escolhido = escolherInimigoIndex(char_atual, inimigos);
+                    inimigo_escolhido = inimigos[index_inimigo_escolhido];
+                    atacar(char_atual, inimigo_escolhido);
+                    if (morreu(inimigo_escolhido)) {
+                        cout << inimigo_escolhido->nome << " morreu!" << endl;
+                        inimigos.erase(inimigos.begin() + index_inimigo_escolhido);
+                        delete inimigo_escolhido;
+                    }
                 }
                 ordem_party++;
                 if (ordem_inimigos >= inimigos.size()) {
@@ -117,6 +161,7 @@ namespace luta {
                 espaco();
                 vez_da_party = false;
                 cin.get();
+                paje_vai_curar = false;
 
             } else { // turno inimigo
                 status(party, inimigos, ordem_party, ordem_inimigos, vez_da_party);
@@ -129,7 +174,6 @@ namespace luta {
                 cin.get();
                 espaco(1);
                 index_aliado_escolhido = rolarDado(party.size());
-                cout << index_aliado_escolhido << endl;
                 aliado_escolhido = party[index_aliado_escolhido - 1];
                 atacar(inimigo_atual, aliado_escolhido);
                 if (morreu(aliado_escolhido)) {
