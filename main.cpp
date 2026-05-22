@@ -7,9 +7,6 @@ using namespace std;
 int main() {
     // vector<Ficha*> fichas = retornarFichas();
     vector<Ficha*> party = criarPartyTeste();
-    vector<Ficha*> inimigos = {inimigo::onca(), inimigo::onca(), inimigo::onca()};
-    luta::iniciar(party, inimigos);
-    // comecarJogo();
+    comecarJogo(party);
     deletarFichas(party);
-    deletarFichas(inimigos);
 }

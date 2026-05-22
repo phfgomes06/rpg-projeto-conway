@@ -41,7 +41,7 @@ int exibirOpcoes(string pergunta, vector<string> opcoes) {
         }
         cin >> input;
     } while (input < 1 || input > opcoes.size());
-    
+
     return input;
 }
 
@@ -56,4 +56,74 @@ bool checarSorte(Ficha* personagem) {
         return true;
     }
     return false;
+}
+
+int escolherPersonagemIndex(vector<Ficha*> party, string acao) {
+    vector<string> nomes = {};
+    int input;
+    string pergunta_completa = "Escolha um personagem para " + acao;
+
+    for(Ficha* f : party) {
+        nomes.push_back(f->nome);
+    }
+    input = exibirOpcoes(pergunta_completa, nomes);
+
+    return (input - 1);
+}
+
+bool realizarTeste(Ficha* p, atributos atr, int dt) {
+    int valor_atr;
+    string nome_atr;
+    string dado;
+    int val_dado;
+    int resultado;
+    int digitos;
+    switch (atr) {
+        case forca:
+            valor_atr = p->forca;
+            nome_atr = "força";
+            break;
+        case inteligencia:
+            valor_atr = p->inteligencia;
+            nome_atr = "inteligência";
+            break;
+        case agilidade:
+            valor_atr = p->agilidade;
+            nome_atr = "agilidade";
+            break;
+        case resistencia:
+            valor_atr = p->resistencia;
+            nome_atr = "resistência";
+            break;
+        case espirito:
+            valor_atr = p->espirito;
+            nome_atr = "espírito";
+            break;
+        default:
+            nome_atr = " ";
+            valor_atr = 0;
+            break;
+    }
+
+    cout << "Teste de " << nome_atr << endl;
+    confirmPrint("Pressione Enter para rolar o dado:");
+    cin.get();
+    val_dado = rolarDado(20);
+    if (val_dado < 10) digitos = 1;
+    else digitos = 2;
+
+    dado = "======" + string(digitos, '=') + '\n' + "|| " + string(digitos, ' ') + " ||\n" + "|| " + to_string(val_dado) + " ||\n" + "|| " + string(digitos, ' ') + " ||\n" + "======" + string(digitos, '=') + '\n';
+
+    confirmPrint(dado);
+    espaco(1);
+    resultado = val_dado + valor_atr;
+    cout << "Resultado final: " << val_dado << " + " << valor_atr << "(" << nome_atr << ") = " << resultado << endl;
+
+    if (resultado >= dt) {
+        confirmPrint("O resultado passa no teste!");
+        return true;
+    } else {
+        confirmPrint("O resultado não passa no teste.");
+        return false;
+    }
 }

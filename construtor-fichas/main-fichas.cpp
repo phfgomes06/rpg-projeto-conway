@@ -48,6 +48,7 @@ void deletarFichas(vector<Ficha*> party) {
     }
 }
 
+
 // PARA DEBUG
 
 vector<Ficha*> criarPartyTeste() {

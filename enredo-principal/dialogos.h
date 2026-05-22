@@ -3,4 +3,5 @@
 
 namespace lore {
     void inicio();
+    void investigarArbusto(vector<Ficha *> party);
 }

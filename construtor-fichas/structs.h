@@ -20,7 +20,6 @@ enum Armas {
     garra
 };
 
-
 struct Ficha {
     string nome;
     Classes classe;
@@ -33,4 +32,12 @@ struct Ficha {
     int resistencia;
     int espirito;
     int restantes; //pontos restantes para gastar
+};
+
+enum atributos {
+    forca,
+    inteligencia,
+    agilidade,
+    resistencia,
+    espirito
 };

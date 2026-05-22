@@ -1,4 +1,4 @@
 #pragma once
 #include "dialogos.h"
 
-void comecarJogo();
+void comecarJogo(vector<Ficha *> party);
