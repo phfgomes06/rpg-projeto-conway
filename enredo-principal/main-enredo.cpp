@@ -8,6 +8,9 @@ void comecarJogo(vector<Ficha*> party) {
     input = exibirOpcoes("O que vocês fazem?", {"Investigar os arbustos", "Ignorar"});
     if (input == 1) {
         lore::investigarArbusto(party);
+    } else {
+        lore::ignorar(party);
     }
+    lore::depoisLutaOncas(party);
 }
 
