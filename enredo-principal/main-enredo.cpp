@@ -1,4 +1,5 @@
 #include "dialogos.h"
+#include <type_traits>
 #include <vector>
 #include "main-enredo.h"
 
@@ -12,5 +13,11 @@ void comecarJogo(vector<Ficha*> party) {
         lore::ignorar(party);
     }
     lore::depoisLutaOncas(party);
+    input = lore::travessia(party);
+    if (input == 1) {
+        lore::caminhoEsquerda(party);
+    } else {
+        lore::caminhoDireita(party);
+    }
 }
 

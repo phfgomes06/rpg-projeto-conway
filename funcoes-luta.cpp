@@ -22,13 +22,19 @@ namespace luta {
                 dano = atacante->forca + atacante->inteligencia + 2 * rolarDado(6);
                 break;
             case facas:
-                dano = atacante->agilidade + 4 * rolarDado(4);
+                dano = atacante->agilidade * rolarDado(3) + atacante->forca;
                 break;
             case maraca:
                 dano = atacante->inteligencia + 2 * rolarDado(4);
                 break;
             case garra:
                 dano = atacante->forca + rolarDado(8);
+                break;
+            case mordida_jacare:
+                dano = atacante->forca + rolarDado(10);
+                break;
+            case mordida_cobra:
+                dano = atacante->forca + agilidade * rolarDado(4);
                 break;
         }
         dano -= atacado->resistencia * checarSorte(atacado);

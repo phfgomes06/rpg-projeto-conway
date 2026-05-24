@@ -71,7 +71,8 @@ namespace lore {
             escolhido = party[index];
             escolhido->vida_atual += 10;
             if (escolhido->vida_atual > escolhido->vida_max) escolhido->vida_atual = escolhido->vida_max;
-            cout << escolhido->nome << " curou 10 pontos de vida!";
+            cout << escolhido->nome << " curou 10 pontos de vida!" << endl;
+            cin.get();
         } else {
             cout << escolhido->nome << " encontrou um corpo devorado pelas onças." << endl;
             cin.get();
@@ -85,4 +86,70 @@ namespace lore {
         confirmPrint("Olhando ao fundo, entre as árvores, você se lembra que a aldeia Hovaigua fica logo átras da floresta, a poucos km dali.");
         confirmPrint("Vocês decidem então, seguir rumo até a aldeia Hovaigua.");
     }
+
+    int travessia(vector<Ficha*> party) {
+        int input;
+        imprimirTitulo("CAPÍTULO 2 - Longe de Qualquer Estrada", 4, '~');
+        cin.get();
+        confirmPrint("Vocês começam então a travessia pela floresta.");
+        confirmPrint("A floresta é escura, densa e silenciosa, apenas com barulhos de alguns animais noturnos.");
+        confirmPrint("Mesmo se fosse de dia, as copas das árvores são fechadas demais para permitir qualquer passagem de luz.");
+        confirmPrint("Depois de alguns minutos caminhando, o grupo se depara com 2 caminhos diferentes para seguir.");
+        confirmPrint("MEMÓRIA: O caminho da esquerda já é conhecido pela aldeia como uma rota que pode conter caçadores perigosos de outras aldeias vizinhas.");
+        confirmPrint("MEMÓRIA: O caminho da direita é conhecido como uma área de cruzamento de animais perigosos.");
+        return exibirOpcoes("Para qual caminho vocês vão?", {"Esquerda", "Direita"});
+    }
+
+    void caminhoEsquerda(vector<Ficha*> party) {
+        vector<Ficha*> cacadores = {};
+        int falhas;
+        int index;
+        Ficha* escolhido;
+
+        confirmPrint("Vocês seguem pelo caminho da esquerda.");
+        confirmPrint("Conforme vão caminhando silenciosamente pela rota, vocês acabam ouvindo vozes.");
+        confirmPrint("Vocês precisam agora tomar muito mais cuidado e serem mais silenciosos.");
+        confirmPrint("De repente, vocês percebem que estão passando do lado dos caçadores.");
+        confirmPrint("Todos precisam testar sua agilidade para ver se conseguem passar rapida e silenciosamente.");
+        for (Ficha* f : party) {
+            if (!realizarTeste(f, agilidade, 15)) {
+                falhas++;
+                cout << f->nome << "acabou pisando em um galho e alertou 1 inimigo!" << endl;
+                cin.get();
+            } else {
+                cout << f->nome << "conseguiu passar furtivamente" << endl;
+                cin.get();
+            }
+        }
+        if (falhas != 0) {
+            for (int i = 0; i < falhas; i++) {
+                if (rolarDado(2) == 1) {
+                    cacadores.push_back(inimigo::cacador_arqueiro());
+                } else {
+                    cacadores.push_back(inimigo::cacador_mateiro());
+                }
+            }
+            cout << falhas << " caçadores notaram a presença de vocês" << endl;
+            cin.get();
+            luta::iniciar(party, cacadores);
+            confirmPrint("Ao saquear os corpos, vocês encontram 2 poções de cura!");
+            for (int i = 0; i < 2; i ++) {
+                index = escolherPersonagemIndex(party, "beber a poção de cura");
+                escolhido = party[index];
+                escolhido->vida_atual += 10;
+                if (escolhido->vida_atual > escolhido->vida_max) escolhido->vida_atual = escolhido->vida_max;
+                cout << escolhido->nome << " curou 10 pontos de vida!" << endl;
+                cin.get();
+            }
+        } else {
+            confirmPrint("Todos conseguiram passar furtivamente e sem alertar os caçadores!");
+        }
+    }
+
+    void caminhoDireita(vector<Ficha*> party) {
+        vector<Ficha*> animais = {inimigo::jacare_acu(), inimigo::sucuri_verde()};
+
+    }
+
+
 }

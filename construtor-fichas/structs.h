@@ -17,7 +17,9 @@ enum Armas {
     arco,
     facas,
     maraca,
-    garra
+    garra,
+    mordida_jacare,
+    mordida_cobra
 };
 
 struct Ficha {
