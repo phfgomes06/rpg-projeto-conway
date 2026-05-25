@@ -58,13 +58,15 @@ bool checarSorte(Ficha* personagem) {
     return false;
 }
 
-int escolherPersonagemIndex(vector<Ficha*> party, string acao) {
+int escolherPersonagemIndex(vector<Ficha*>& party, string acao) {
     vector<string> nomes = {};
     int input;
     string pergunta_completa = "Escolha um personagem para " + acao;
 
     for(Ficha* f : party) {
-        nomes.push_back(f->nome);
+        if (f) {
+            nomes.push_back(f->nome);
+        }
     }
     input = exibirOpcoes(pergunta_completa, nomes);
 
@@ -126,4 +128,13 @@ bool realizarTeste(Ficha* p, atributos atr, int dt) {
         confirmPrint("O resultado não passa no teste.");
         return false;
     }
+}
+
+Ficha* personagemAleatorio(vector<Ficha*>& party) {
+    return party[rolarDado(party.size()) - 1];
+}
+
+void falar(Ficha* personagem,string fala) {
+    cout << "> " << personagem->nome << ": " << fala << endl;
+    cin.get();
 }

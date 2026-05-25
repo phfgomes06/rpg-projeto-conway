@@ -15,5 +15,7 @@ int rolarDado(int lados);
 int exibirOpcoes(string pergunta, vector<string> opcoes);
 void confirmPrint(string conteudo);
 bool checarSorte(Ficha* personagem);
-int escolherPersonagemIndex(vector<Ficha*> party, string acao);
+int escolherPersonagemIndex(vector<Ficha*>& party, string acao);
 bool realizarTeste(Ficha* p, atributos atr, int dt);
+Ficha* personagemAleatorio(vector<Ficha*>& party);
+void falar(Ficha* personagem,string fala);

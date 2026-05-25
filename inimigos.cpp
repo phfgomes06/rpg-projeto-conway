@@ -81,5 +81,37 @@ namespace inimigo {
         f->restantes = 0;
         return f;
     }
-    
+
+    Ficha* guardaHovaigua() {
+        Ficha* f = new Ficha();
+        f->nome = "Guarda Hovaigua";
+        f->classe = nenhuma_classe;
+        f->arma = lanca_hovaigua;
+        f->vida_max = 25;
+        f->vida_atual = 25;
+        f->forca = 3;
+        f->inteligencia = 2;
+        f->agilidade = 1;
+        f->resistencia = 2;
+        f->espirito = 1;
+        f->restantes = 0;
+        return f;
+    }
+
+    Ficha* cacique() {
+        Ficha* f = new Ficha();
+        f->nome = "O Cacique Hovaigua";
+        f->classe = paje;
+        f->arma = poderes_natureza;
+        f->vida_max = 80;
+        f->vida_atual = 80;
+        f->forca = 7;
+        f->inteligencia = 8;
+        f->agilidade = 5;
+        f->resistencia = 4;
+        f->espirito = 3;
+        f->restantes = 0;
+        return f;
+    }
+
 }

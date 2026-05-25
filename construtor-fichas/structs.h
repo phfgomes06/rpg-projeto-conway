@@ -19,7 +19,17 @@ enum Armas {
     maraca,
     garra,
     mordida_jacare,
-    mordida_cobra
+    mordida_cobra,
+    tacape_dentado,
+    arco_afiado,
+    facas_serrilhadas,
+    maraca_pintada,
+    lanca_hovaigua,
+    tacapaco,
+    arco_triplo,
+    facas_2_gumes,
+    grimorio,
+    poderes_natureza
 };
 
 struct Ficha {

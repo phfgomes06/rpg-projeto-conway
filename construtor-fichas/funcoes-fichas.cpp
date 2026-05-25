@@ -212,5 +212,26 @@ string nomeDaArma(Ficha* p) {
             return "mordida de jacaré";
         case mordida_cobra:
             return "mordida de cobra";
+        case tacape_dentado:
+            return "tacape dentado";
+        case arco_afiado:
+            return "arco com flechas afiadas";
+        case facas_serrilhadas:
+            return "facas de ossos serrilhadas";
+        case maraca_pintada:
+            return "maracás pintadas";
+        case lanca_hovaigua:
+            return "lança de ossos";
+        case tacapaco:
+            return "TACAPAÇO!";
+        case arco_triplo:
+            return "arco triplo";
+        case facas_2_gumes:
+            if (rolarDado(20) == 1) return "facas de 2 (le)gumes";
+            else return "facas de 2 gumes";
+        case grimorio:
+            return "grimório";
+        case poderes_natureza:
+            return "Poderes da Natureza";
     }
 }

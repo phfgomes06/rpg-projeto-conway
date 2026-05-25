@@ -1,6 +1,7 @@
 #include "construtor-fichas/funcoes-fichas.h"
 #include "funcoes-universais.h"
 #include "construtor-fichas/structs.h"
+#include <cmath>
 #include <cstdlib>
 
 namespace luta {
@@ -28,13 +29,43 @@ namespace luta {
                 dano = atacante->inteligencia + 2 * rolarDado(4);
                 break;
             case garra:
-                dano = atacante->forca + rolarDado(8);
+                dano = atacante->forca + rolarDado(4);
                 break;
             case mordida_jacare:
-                dano = atacante->forca + rolarDado(10);
+                dano = atacante->forca + rolarDado(6);
                 break;
             case mordida_cobra:
-                dano = atacante->forca + agilidade * rolarDado(4);
+                dano = atacante->forca + agilidade * rolarDado(2);
+                break;
+            case tacape_dentado:
+                dano = 3 * atacante->forca + rolarDado(20);
+                break;
+            case arco_afiado:
+                dano = atacante->forca * atacante->inteligencia + 2 * rolarDado(8);
+                break;
+            case facas_serrilhadas:
+                dano = atacante->agilidade * rolarDado(4) + 2 * atacante->forca;
+                break;
+            case maraca_pintada:
+                dano = atacante->inteligencia + atacante->espirito + 2 * rolarDado(8);
+                break;
+            case lanca_hovaigua:
+                dano = atacante->forca + rolarDado(8);
+                break;
+            case tacapaco:
+                dano = 4 * atacante->forca + rolarDado(20) + rolarDado(20);
+                break;
+            case arco_triplo:
+                dano = atacante->forca + atacante->inteligencia + 3 * rolarDado(10);
+                break;
+            case facas_2_gumes:
+                dano = (atacante->agilidade + 2) * (rolarDado(6) + atacante->forca);
+                break;
+            case grimorio:
+                dano = 3 * atacante->inteligencia + 3 * rolarDado(8);
+                break;
+            case poderes_natureza:
+                dano = atacante->inteligencia + rolarDado(12);
                 break;
         }
         dano -= atacado->resistencia * checarSorte(atacado);
@@ -45,7 +76,7 @@ namespace luta {
         cin.get();
     }
 
-    void status(vector<Ficha*> party, vector<Ficha*> inimigos, int ordem_party, int ordem_inimigos, bool vez_da_party) {
+    void status(vector<Ficha*>& party, vector<Ficha*>& inimigos, int ordem_party, int ordem_inimigos, bool vez_da_party) {
         cout << "===============================================================" << endl;
         cout << "Ordem da party:" << endl;
         espaco(1);
@@ -71,7 +102,7 @@ namespace luta {
         }
     }
 
-    int escolherInimigoIndex(Ficha* char_atual, vector<Ficha*> inimigos) {
+    int escolherInimigoIndex(Ficha* char_atual, vector<Ficha*>& inimigos) {
         vector<string> nomes = {};
         int input;
 
@@ -91,7 +122,7 @@ namespace luta {
         else return false;
     }
 
-    int pajeEscolherAliado(Ficha* paje, vector<Ficha*> party) {
+    int pajeEscolherAliado(Ficha* paje, vector<Ficha*>& party) {
         vector<string> nomes = {};
         int input;
 
@@ -106,7 +137,13 @@ namespace luta {
 
     void pajeCurarAliado(Ficha* paje, Ficha* alvo) {
         int cura;
-        cura = paje->inteligencia + paje->espirito + rolarDado(8);
+        if (paje->arma == maraca) {
+            cura = paje->inteligencia + paje->espirito + rolarDado(8);
+        } else if (paje->arma == maraca_pintada) {
+            cura = 2 * paje->inteligencia + paje->espirito + rolarDado(12);
+        } else if (paje->arma == grimorio) {
+            cura = 3 * paje->inteligencia + 2 * paje->espirito + rolarDado(12);
+        }
         alvo->vida_atual += cura;
         if (alvo->vida_atual > alvo->vida_max) {
             alvo->vida_atual = alvo->vida_max;
@@ -117,7 +154,7 @@ namespace luta {
         cin.get();
     }
 
-    void iniciar(vector<Ficha*> party, vector<Ficha*> inimigos) {
+    void iniciar(vector<Ficha*>& party, vector<Ficha*>& inimigos) {
         int ordem_party = 0;
         int ordem_inimigos = 0;
         bool vez_da_party = true;
@@ -155,9 +192,14 @@ namespace luta {
                     inimigo_escolhido = inimigos[index_inimigo_escolhido];
                     atacar(char_atual, inimigo_escolhido);
                     if (morreu(inimigo_escolhido)) {
-                        cout << inimigo_escolhido->nome << " morreu!" << endl;
-                        inimigos.erase(inimigos.begin() + index_inimigo_escolhido);
-                        delete inimigo_escolhido;
+                        if (inimigo_escolhido->arma != poderes_natureza) { // gambiarra suprema KKKKKKK
+                            cout << inimigo_escolhido->nome << " morreu!" << endl;
+                            inimigos.erase(inimigos.begin() + index_inimigo_escolhido);
+                            delete inimigo_escolhido;
+                        } else {
+                            inimigo_escolhido->vida_atual = 1;
+                            break;
+                        }
                     }
                 }
                 ordem_party++;
@@ -169,28 +211,45 @@ namespace luta {
                 cin.get();
                 paje_vai_curar = false;
 
-            } else { // turno inimigo
+            } else if (!vez_da_party && !inimigos.empty()) { // turno inimigo
+                if (ordem_party >= party.size()) {
+                    ordem_party = 0;
+                }
+
                 status(party, inimigos, ordem_party, ordem_inimigos, vez_da_party);
                 cin.get();
                 imprimirTitulo("Vez dos inimigos!");
                 cin.get();
+
                 inimigo_atual = inimigos[ordem_inimigos];
                 cout << ">>> " << inimigo_atual->nome << " - " << nomeDaArma(inimigo_atual);
                 imprimirPorcentagem("", inimigo_atual->vida_atual, inimigo_atual->vida_max);
                 cin.get();
                 espaco(1);
-                index_aliado_escolhido = rolarDado(party.size());
-                aliado_escolhido = party[index_aliado_escolhido - 1];
+
+                int index_vetor_aliado = rolarDado(party.size()) - 1;
+                aliado_escolhido = party[index_vetor_aliado];
+
                 atacar(inimigo_atual, aliado_escolhido);
+
                 if (morreu(aliado_escolhido)) {
                     cout << aliado_escolhido->nome << " morreu!" << endl;
-                    party.erase(party.begin() + index_aliado_escolhido);
                     delete aliado_escolhido;
+                    party.erase(party.begin() + index_vetor_aliado);
+                    if (index_vetor_aliado <= ordem_party && ordem_party > 0) {
+                        ordem_party--;
+                    }
                 }
+
                 ordem_inimigos++;
-                if (ordem_party >= party.size()) {
+                if (ordem_inimigos >= inimigos.size()) {
+                    ordem_inimigos = 0;
+                }
+
+                if (party.empty() || ordem_party >= party.size()) {
                     ordem_party = 0;
                 }
+
                 espaco();
                 vez_da_party = true;
                 cin.get();
@@ -200,7 +259,16 @@ namespace luta {
         if (party.empty()) {
             imprimirTitulo("GAME OVER!!!");
             exit(0);
-        } else {
+        }
+        
+        if (!inimigos.empty()) {
+            if (inimigos[0]->arma == poderes_natureza) { // gambiarra suprema parte 2 KKKKKKKKKKKKKKK
+                return;
+            }
+        }
+
+
+        if (!party.empty()) {
             imprimirTitulo("Vitória!!!");
             cin.get();
         }

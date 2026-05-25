@@ -3,5 +3,5 @@
 #include <vector>
 
 vector<Ficha*> retornarFichas();
-void deletarFichas(vector<Ficha*> party);
+void deletarFichas(vector<Ficha*>& party);
 vector<Ficha*> criarPartyTeste();

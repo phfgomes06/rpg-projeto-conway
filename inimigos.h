@@ -9,4 +9,6 @@ namespace inimigo {
     Ficha* cacador_mateiro();
     Ficha* jacare_acu();
     Ficha* sucuri_verde();
+    Ficha* guardaHovaigua();
+    Ficha* cacique();
 }

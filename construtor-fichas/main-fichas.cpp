@@ -32,6 +32,7 @@ vector<Ficha*> retornarFichas() {
                 }
                 break;
             case 4:
+                return party;
                 break;
             default:
                 break;
@@ -42,7 +43,7 @@ vector<Ficha*> retornarFichas() {
     return party;
 }
 
-void deletarFichas(vector<Ficha*> party) {
+void deletarFichas(vector<Ficha*>& party) {
     if (!party.empty()) {
         for (Ficha* f : party) delete f;
     }
