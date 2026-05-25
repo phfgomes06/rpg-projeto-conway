@@ -476,4 +476,22 @@ namespace lore {
         
     }
 
+    /*
+     * se você estiver lendo isso aqui, então vou te contar um fun fact.
+     * O nome dos capítulos são em homenagem a músicas que eu gosto.
+     * 1- sem estrelas -> Starless - King Crimson
+     * 2- longe de qualquer estrada -> Far From Any Road - The Handsome Family
+     * 3- Horizontes -> Horizons - Genesis
+     * 4- A Corte do Cacique Hovaigua -> The Court of the Crimson King - King Crimson
+     * 
+     * e o final 2 (Nós podemos ser heróis) é em homenagem à música "Heroes" - David Bowie :P
+     * 
+     * Hovaigua significa "rival" em tupi guarani (sim, bem direto mesmo)
+     *
+     * e os comentários que começam com "PERCEPÇAO", "INTUICAO", "REFLEXAO", bla bla bla são
+     * uma referência ao jogo Disco Elysium, em que os sentidos do protagonista são tratados como
+     * falas, igualzinho como eu fiz.
+     */
+
+    
 } // namespace
