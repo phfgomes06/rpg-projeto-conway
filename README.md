@@ -35,8 +35,10 @@ E para deletar, pode se usar `clean`.
 
 
 ## Notas
-Quando eu terminei o curso e comecei a trabalhar no jogo, a parte do curso sobre Orientação a Objeto não existia ainda, entao eu comecei a fazer sem o uso de classes. Depois que inseriram as aulas sobre classes, apesar de ter visto as aulas, eu quis continuar o jogo com essa filosofia de não usar classes como uma especie de desafio para expandir minha visao.
+Quando eu terminei o curso e comecei a trabalhar no jogo, a parte do curso sobre Orientação a Objeto não existia ainda, entao eu comecei a fazer sem o uso de classes. Depois que inseriram as aulas sobre classes, apesar de ter visto as aulas, eu quis continuar o jogo com essa filosofia de não usar classes como uma espécie de desafio para expandir minha visão.
 
 *Me arrependi muito disso, foi muito complicado trabalhar com structs e ponteiros KASDJAKKDAJDS*
 
 Além disso, tentei ao máximo explorar todos os conceitos abordados no curso.
+
+Esse projeto não tem o menor objetivo de lucrar ou se restringir a minha autoria. Sinta-se livre para modificar, explorar e se divertir :)
