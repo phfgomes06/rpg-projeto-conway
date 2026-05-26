@@ -4,7 +4,7 @@
 #include <random>
 #include <thread>
 #include <chrono>
-#include "construtor-fichas/structs.h"
+#include "../construtor-fichas/structs.h"
 using namespace std::chrono_literals;
 using namespace std;
 

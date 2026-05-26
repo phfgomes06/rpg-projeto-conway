@@ -1,4 +1,4 @@
-#include "construtor-fichas/structs.h"
+#include "../construtor-fichas/structs.h"
 using namespace std;
 
 namespace inimigo {

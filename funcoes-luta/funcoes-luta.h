@@ -1,5 +1,5 @@
 #pragma once
-#include "funcoes-universais.h"
+#include "../funcoes-universais/funcoes-universais.h"
 
 namespace luta {
     bool morreu(Ficha* personagem);

@@ -3,7 +3,7 @@
 #include <string>
 #include "structs.h"
 #include <vector>
-#include "../funcoes-universais.h"
+#include "../funcoes-universais/funcoes-universais.h"
 using namespace std;
 
 void resumoFichas();

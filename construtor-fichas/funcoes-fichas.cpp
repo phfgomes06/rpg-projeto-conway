@@ -2,7 +2,7 @@
 #include <string>
 #include "structs.h"
 #include <vector>
-#include "../funcoes-universais.h"
+#include "../funcoes-universais/funcoes-universais.h"
 #include "funcoes-fichas.h"
 using namespace std;
 
@@ -69,8 +69,9 @@ Ficha* criarFicha() {
 
 void escolherNome(Ficha* ficha) {
     string nome;
+    cin.ignore();
     cout << "Digite o nome que você quer para o seu personagem: " << endl;
-    cin >> nome;
+    getline(cin, nome);
     ficha->nome = nome;
     cout << "Nome <" << nome << "> salvo para o personagem!";
     espaco();

@@ -1,7 +1,7 @@
-#include "../funcoes-universais.h"
+#include "../funcoes-universais/funcoes-universais.h"
 #include "dialogos.h"
-#include "../funcoes-luta.h"
-#include "../inimigos.h"
+#include "../funcoes-luta/funcoes-luta.h"
+#include "../inimigos/inimigos.h"
 #include "../construtor-fichas/funcoes-fichas.h"
 #include <oneapi/tbb/info.h>
 
@@ -61,9 +61,6 @@ namespace lore {
         Ficha* escolhido;
         confirmPrint("Vocês olham por detrás do arbusto de onde elas vieram");
         confirmPrint("Mas apenas um de vocês nota uma coisa estranha");
-        for (Ficha* f : party) {
-            cout << f << endl;
-        }
         index = escolherPersonagemIndex(party, "teste de inteligência");
         escolhido = party[index];
         if (realizarTeste(escolhido, inteligencia, 12)) {
@@ -165,7 +162,7 @@ namespace lore {
         p_loot = personagemAleatorio(party);
         switch (p_loot->arma) {
             case tacape:
-                cout << "Após a luta, " << p_loot << " percebeu que seu tacape pode ser melhorado acoplando os dentes do jacaré na ponta!" << endl;
+                cout << "Após a luta, " << p_loot->nome << " percebeu que seu tacape pode ser melhorado acoplando os dentes do jacaré na ponta!" << endl;
                 cin.get();
                 cout << p_loot << " teve sua arma melhorada para tacape dentado!" << endl;
                 cin.get();
@@ -383,6 +380,9 @@ namespace lore {
             case maraca:
             case maraca_pintada:
                 loot = grimorio;
+                break;
+            default:
+                confirmPrint("Top 10 coisas que você não deveria estar lendo");
                 break;
         }
         confirmPrint("PERCEPÇÃO: Conforme vocês se aproximam da oca da direita, vocês notam que nela tem gravado um símbolo de uma espada.");

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <random>
-#include "construtor-fichas/structs.h"
+#include "../construtor-fichas/structs.h"
 using namespace std;
 
 void espaco(int tamanho = 2) {

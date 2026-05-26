@@ -1,5 +1,5 @@
 #pragma once
-#include "construtor-fichas/structs.h"
+#include "../construtor-fichas/structs.h"
 #include <vector>
 using namespace std;
 

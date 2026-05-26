@@ -1,7 +1,10 @@
 TARGET = rpg
 
-SRCS = *.cpp \
+SRCS = main.cpp \
        construtor-fichas/*.cpp \
+       funcoes-luta/*.cpp \
+       funcoes-universais/*.cpp \
+       inimigos/*.cpp \
        enredo-principal/*.cpp \
 
 all:

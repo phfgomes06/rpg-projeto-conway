@@ -1,7 +1,6 @@
-#include "construtor-fichas/funcoes-fichas.h"
-#include "funcoes-universais.h"
-#include "construtor-fichas/structs.h"
-#include <cmath>
+#include "../construtor-fichas/funcoes-fichas.h"
+#include "../funcoes-universais/funcoes-universais.h"
+#include "../construtor-fichas/structs.h"
 #include <cstdlib>
 
 namespace luta {

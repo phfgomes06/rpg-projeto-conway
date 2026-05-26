@@ -1,7 +1,6 @@
 #include "funcoes-fichas.h"
 #include "structs.h"
 #include "main-fichas.h"
-#include <execution>
 #include <vector>
 
 vector<Ficha*> retornarFichas() {
@@ -32,8 +31,13 @@ vector<Ficha*> retornarFichas() {
                 }
                 break;
             case 4:
-                return party;
-                break;
+                if (!party.empty()) {
+                    return party;         
+                } else {
+                    confirmPrint("Crie pelo menos 1 personagem!");
+                    espaco();
+                    cin.get();
+                }
             default:
                 break;
         }
