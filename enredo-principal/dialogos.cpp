@@ -142,7 +142,7 @@ namespace lore {
                 cout << escolhido->nome << " curou 10 pontos de vida!" << endl;
                 cin.get();
             }
-            
+
         } else {
             confirmPrint("Todos conseguiram passar furtivamente e sem alertar os caçadores!");
         }
@@ -164,28 +164,28 @@ namespace lore {
             case tacape:
                 cout << "Após a luta, " << p_loot->nome << " percebeu que seu tacape pode ser melhorado acoplando os dentes do jacaré na ponta!" << endl;
                 cin.get();
-                cout << p_loot << " teve sua arma melhorada para tacape dentado!" << endl;
+                cout << p_loot->nome << " teve sua arma melhorada para tacape dentado!" << endl;
                 cin.get();
                 p_loot->arma = tacape_dentado;
                 break;
             case arco:
-                cout << "Após a luta, " << p_loot << " percebeu que suas flechas podem ser melhoradas usando os dentes da sucuri como pontas afiadas!" << endl;
+                cout << "Após a luta, " << p_loot->nome << " percebeu que suas flechas podem ser melhoradas usando os dentes da sucuri como pontas afiadas!" << endl;
                 cin.get();
-                cout << p_loot << " teve sua arma melhorada para arco afiado!" << endl;
+                cout << p_loot->nome << " teve sua arma melhorada para arco afiado!" << endl;
                 cin.get();
                 p_loot->arma = arco_afiado;
                 break;
             case facas:
-                cout << "Após a luta, " << p_loot << " percebeu que os ossos do jacaré podem ser usados para fazer novas facas!" << endl;
+                cout << "Após a luta, " << p_loot->nome << " percebeu que os ossos do jacaré podem ser usados para fazer novas facas!" << endl;
                 cin.get();
-                cout << p_loot << " teve sua arma melhorada para facas de ossos serrilhados!" << endl;
+                cout << p_loot->nome << " teve sua arma melhorada para facas de ossos serrilhados!" << endl;
                 cin.get();
                 p_loot->arma = facas_serrilhadas;
                 break;
             case maraca:
-                cout << "Após a luta, " << p_loot << " percebeu que o veneno da cobra pode ser usado como uma tinta para pintar os maracás e aumentar seus poderes ritualísticos!" << endl;
+                cout << "Após a luta, " << p_loot->nome << " percebeu que o veneno da cobra pode ser usado como uma tinta para pintar os maracás e aumentar seus poderes ritualísticos!" << endl;
                 cin.get();
-                cout << p_loot << " teve sua arma melhorada para maracás pintados!" << endl;
+                cout << p_loot->nome << " teve sua arma melhorada para maracás pintados!" << endl;
                 cin.get();
                 p_loot->arma = maraca_pintada;
                 break;
@@ -261,7 +261,7 @@ namespace lore {
                 cout << "Um deles se aproxima de " << escolhido->nome << " e ataca-o com a lança" << endl;
                 cin.get();
                 luta::atacar(guardas[0], escolhido);
-            } 
+            }
         }
         luta::iniciar(party, guardas);
         confirmPrint("Depois da cansativa luta contra os guardas, vocês saem da oca.");
@@ -473,7 +473,7 @@ namespace lore {
             confirmPrint("O Cacique Hovaigua morreu!");
             finalBom();
         }
-        
+
     }
 
     /*
@@ -483,9 +483,9 @@ namespace lore {
      * 2- longe de qualquer estrada -> Far From Any Road - The Handsome Family
      * 3- Horizontes -> Horizons - Genesis
      * 4- A Corte do Cacique Hovaigua -> The Court of the Crimson King - King Crimson
-     * 
+     *
      * e o final 2 (Nós podemos ser heróis) é em homenagem à música "Heroes" - David Bowie :P
-     * 
+     *
      * Hovaigua significa "rival" em tupi guarani (sim, bem direto mesmo)
      *
      * e os comentários que começam com "PERCEPÇAO", "INTUICAO", "REFLEXAO", bla bla bla são
@@ -493,5 +493,5 @@ namespace lore {
      * falas, igualzinho como eu fiz.
      */
 
-    
+
 } // namespace
